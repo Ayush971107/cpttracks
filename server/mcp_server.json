@@ -1,0 +1,15 @@
+{
+    "mcpServers": {
+      "server": {
+        "command": "uv",
+        "args": [
+          "run",
+          "--with",
+          "mcp[cli]",
+          "mcp",
+          "run",
+          "/Users/ayush/Ayush/ffhack/cptracks/server/mcp_server.py"
+        ]
+      }
+    }
+}
