@@ -17,15 +17,16 @@ class CPTCode(Base):
     description: Mapped[str] = mapped_column("Description", Text)
     ai_description: Mapped[str] = mapped_column("AI Description", Text)
 
-DATABASE_URL = "postgresql+asyncpg://USER:PASS@HOST/DB"
+DATABASE_URL = "sqlite+aiosqlite:///./cpt_codes.db"
 engine = create_async_engine(DATABASE_URL, echo=True)
 
 app = EnrichMCP(
     "CPT Code MCP Server",
-    lifespan=sqlalchemy_lifespan(Base, engine)
+    lifespan=sqlalchemy_lifespan(Base, engine),
+    description="CPT Code MCP Server"
 )
 
 include_sqlalchemy_models(app, Base)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     app.run()
