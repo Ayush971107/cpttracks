@@ -8,3 +8,6 @@ hspcs_codes.csv
 icd10pcs_codes.csv
 .DS_Store
 embedding_job.log
+insurance_claims_codes_db.psql
+insurance_claims_codes_db.tar
+docker-compose.yml
