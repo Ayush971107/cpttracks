@@ -9,7 +9,7 @@ async def run_memory_chat():
     
     load_dotenv()
 
-    config_file = "dynamo-mcp/mcp_server.json"
+    config_file = "server/mcp_server.json"
     print("Initializing chat...")
     
     client = MCPClient.from_config_file(config_file)

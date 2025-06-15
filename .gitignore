@@ -1,1 +1,5 @@
 .venv/
+.env
+server/cpt_codes.db
+server/peek.py
+server/__pycache__/
