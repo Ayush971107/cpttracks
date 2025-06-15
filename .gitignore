@@ -3,3 +3,8 @@
 server/cpt_codes.db
 server/peek.py
 server/__pycache__/
+cpt_codes.csv
+hspcs_codes.csv
+icd10pcs_codes.csv
+.DS_Store
+embedding_job.log

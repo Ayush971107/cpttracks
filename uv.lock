@@ -197,22 +197,30 @@ source = { virtual = "." }
 dependencies = [
     { name = "aiosqlite" },
     { name = "asyncpg" },
+    { name = "dotenv" },
     { name = "greenlet" },
     { name = "langchain-openai" },
     { name = "mcp-use" },
+    { name = "openai" },
     { name = "pandas" },
+    { name = "pinecone" },
     { name = "sqlalchemy" },
+    { name = "tenacity" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "aiosqlite", specifier = ">=0.21.0" },
     { name = "asyncpg", specifier = ">=0.30.0" },
+    { name = "dotenv", specifier = ">=0.9.9" },
     { name = "greenlet", specifier = ">=3.2.3" },
     { name = "langchain-openai", specifier = ">=0.3.23" },
     { name = "mcp-use", specifier = ">=1.3.0" },
+    { name = "openai", specifier = ">=1.86.0" },
     { name = "pandas", specifier = ">=2.3.0" },
+    { name = "pinecone", specifier = ">=7.0.2" },
     { name = "sqlalchemy", specifier = ">=2.0.41" },
+    { name = "tenacity", specifier = ">=9.1.2" },
 ]
 
 [[package]]
@@ -235,6 +243,17 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/fc/f8/98eea607f65de6527f8a2e8885fc8015d3e6f5775df186e443e0964a11c3/distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed", size = 60722 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/12/b3/231ffd4ab1fc9d679809f356cebee130ac7daa00d6d6f3206dd4fd137e9e/distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2", size = 20277 },
+]
+
+[[package]]
+name = "dotenv"
+version = "0.9.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dotenv" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892 },
 ]
 
 [[package]]
@@ -741,6 +760,45 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/15/aa/3fc3181d12b95da71f5c2537c3e3b3af6ab3a8c392ab41ebb766e0929bc6/pandas-2.3.0-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1a881bc1309f3fce34696d07b00f13335c41f5f5a8770a33b09ebe23261cfc67", size = 11966182 },
     { url = "https://files.pythonhosted.org/packages/37/e7/e12f2d9b0a2c4a2cc86e2aabff7ccfd24f03e597d770abfa2acd313ee46b/pandas-2.3.0-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:e1991bbb96f4050b09b5f811253c4f3cf05ee89a589379aa36cd623f21a31d6f", size = 12547686 },
     { url = "https://files.pythonhosted.org/packages/39/c2/646d2e93e0af70f4e5359d870a63584dacbc324b54d73e6b3267920ff117/pandas-2.3.0-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:bb3be958022198531eb7ec2008cfc78c5b1eed51af8600c6c5d9160d89d8d249", size = 13231847 },
+]
+
+[[package]]
+name = "pinecone"
+version = "7.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "certifi" },
+    { name = "pinecone-plugin-assistant" },
+    { name = "pinecone-plugin-interface" },
+    { name = "python-dateutil" },
+    { name = "typing-extensions" },
+    { name = "urllib3", marker = "python_full_version < '4.0'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7f/99/c701828a2442fdf9a4b113cfa8685e510cbca9573281783320d61d7c5db3/pinecone-7.0.2.tar.gz", hash = "sha256:ff17f6ac798979adf0df0817e8f1d356a3363768f42e341b2a47f2bf895eb46a", size = 207701 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/12/33/1027d129d4773fe44ea78db2e8d6a560590055f31f7e5abd9683e6591a08/pinecone-7.0.2-py3-none-any.whl", hash = "sha256:c112c6be314178da13701e92df77d9e32db4f92b5e8a4d9b3e0b071abc49fe39", size = 516278 },
+]
+
+[[package]]
+name = "pinecone-plugin-assistant"
+version = "1.7.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fa/8c/2db25e4d88ec31cc096b71473938e9269459eb567b50ea49dbea9a88f3ab/pinecone_plugin_assistant-1.7.0.tar.gz", hash = "sha256:e26e3ba10a8b71c3da0d777cff407668022e82963c4913d0ffeb6c552721e482", size = 145608 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/91/29/9aab5e3e22086da8ba40fa9cd34bfefffd9cdf3f43f237fd7c9969568f20/pinecone_plugin_assistant-1.7.0-py3-none-any.whl", hash = "sha256:864cb8e7930588e6c2da97c6d44f0240969195f43fa303c5db76cbc12bf903a5", size = 239972 },
+]
+
+[[package]]
+name = "pinecone-plugin-interface"
+version = "0.0.7"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/f4/fb/e8a4063264953ead9e2b24d9b390152c60f042c951c47f4592e9996e57ff/pinecone_plugin_interface-0.0.7.tar.gz", hash = "sha256:b8e6675e41847333aa13923cc44daa3f85676d7157324682dc1640588a982846", size = 3370 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3b/1d/a21fdfcd6d022cb64cef5c2a29ee6691c6c103c4566b41646b080b7536a5/pinecone_plugin_interface-0.0.7-py3-none-any.whl", hash = "sha256:875857ad9c9fc8bbc074dbe780d187a2afd21f5bfe0f3b08601924a61ef1bba8", size = 6249 },
 ]
 
 [[package]]
