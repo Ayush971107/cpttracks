@@ -60,7 +60,3 @@ Run the chat client: (quit to exit)
    ```bash
    uv run server/client.py
    ```
-
-
-
-
