@@ -17,7 +17,6 @@ Leverages OpenAI embeddings and Pinecone for sub-second, context-aware search ov
 ## Architecture
 
 Client ──▶ MCP Server ──▶ OpenAI Embeddings
-│
 └─▶ Pinecone Vector DB ──▶ LLM Reasoner ──▶ Client
 
 
