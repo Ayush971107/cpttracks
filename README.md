@@ -1,62 +1,47 @@
-## Prerequisites
+# CPTTracks
 
-- Python 3.8+
-- [uv](https://github.com/astral-sh/uv) - Python package and environment manager
-- OpenAI API key (for the chat client)
+A high-performance Retrieval-Augmented Generation (RAG) system for medical billing code lookup and validation.  
+Leverages OpenAI embeddings and Pinecone for sub-second, context-aware search over CPT, HCPCS, and ICD-10 datasets, with an EnrichMCP server providing real-time code reasoning and suggestions.
+
+## Features
+
+- **Fast, Context-Aware Search**  
+  Uses OpenAI text embeddings + Pinecone vector DB to retrieve relevant insurance codes.
+- **LLM-Driven Reasoning**  
+  Top vector hits are fed into an LLM for additional context-aware analysis.
+- **Modular MCP Server**  
+  Async `find_similar_codes` endpoint built with EnrichMCP, SQLAlchemy, and Pinecone.
+- **Easy Integration**  
+  Provides validated code suggestions ready for revenue-cycle management workflows.
+
+## Architecture
+
+Client ──▶ MCP Server ──▶ OpenAI Embeddings
+│
+└─▶ Pinecone Vector DB ──▶ LLM Reasoner ──▶ Client
+
+
+1. **Query Embedding**  
+   User query → OpenAI embeddings.
+2. **Vector Search**  
+   Embedding → Pinecone → top-k code candidates.
+3. **LLM Reasoning**  
+   Candidates + context → GPT-style model → validated suggestions.
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd cptracks
-   ```
-
-2. Create and activate a virtual environment using uv:
-   ```bash
-   uv venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   uv pip install -r requirements.txt
-   ```
-
-4. Set up your environment variables:
-   Create a `.env` file in the root directory with your OpenAI API key:
-   ```
-   OPENAI_API_KEY=your_api_key_here
-   ```
-
-## Database Connection
-
-The MCP server uses SQLite with SQLAlchemy for database operations. The connection is configured in `mcp_server.py`:
-
-```python
-DATABASE_URL = "sqlite+aiosqlite:///./cpt_codes.db"
-engine = create_async_engine(DATABASE_URL)
+```bash
+git clone https://github.com/<your-username>/codecompass.git
+cd codecompass
+pip install -r requirements.txt
 ```
 
-### Database Schema
+Create and populate your PostgreSQL database with CPT/HCPCS/ICD-10 tables.
 
-The CPT codes are stored with the following schema:
+Copy .env.example to .env and fill in OPENAI_API_KEY, PINECONE_API_KEY, PINECONE_ENVIRONMENT, and DATABASE_URL.
 
-```python
-class CPTCode(Base):
-    __tablename__ = "cpt_codes"
-    code: Mapped[str] = mapped_column("Code", String, primary_key=True)
-    state: Mapped[str] = mapped_column("State", String)
-    description: Mapped[str] = mapped_column("Description", Text)
-    ai_description: Mapped[str] = mapped_column("AI Description", Text)
+Run the MCP server:
+
+```bash
+python server/mcp_server.py
 ```
-
-
-## Using the Chat Client
-
-An interactive chat client is provided to test the MCP server:
-
-Run the chat client: (quit to exit)
-   ```bash
-   uv run server/client.py
-   ```
